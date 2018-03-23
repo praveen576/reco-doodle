@@ -1,0 +1,39 @@
+<form role="form" method="get" action="<%= filter_destinations_destinations_path %>">
+  
+  <div class="tab-content">
+    
+    <div class="tab-pane active" role="tabpanel" id="step1">
+      <h3>Get Started</h3>
+      <ul class="list-inline pull-right">
+          <!-- <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li> -->
+          <li><button type="button" class="next-step round-action"><i class="glyphicon glyphicon-arrow-right"></i></button></li>
+      </ul>
+    </div>
+    
+    <div class="tab-pane" role="tabpanel" id="step2">
+      <%= render 'form_1' %>
+      <ul class="list-inline pull-right">
+        <li><button type="button" class="prev-step round-action"><i class="glyphicon glyphicon-arrow-left"></i></button></li>
+        <li><button type="button" class="next-step round-action"><i class="glyphicon glyphicon-arrow-right"></i></button></li>
+      </ul>
+    </div>
+    
+    <div class="tab-pane" role="tabpanel" id="step3">
+      <%= render 'form_2' %>
+      <ul class="list-inline pull-right">
+        <li><button type="button" class="prev-step round-action"><i class="glyphicon glyphicon-arrow-left"></i></button></li>
+        <li><button type="submit" class="next-step round-action"><i class="glyphicon glyphicon-ok"></i></button></li>
+          <!-- <li><button type="button" class="btn btn-default next-step">Skip</button></li> -->
+      </ul>
+    </div>
+    
+    <div class="tab-pane" role="tabpanel" id="complete">
+      <h3>Complete</h3>
+      <p>You have successfully completed all steps.</p>
+    </div>
+    
+    <div class="clearfix"></div>
+  
+  </div>
+
+</form>

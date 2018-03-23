@@ -61,8 +61,9 @@ class DestinationsController < ApplicationController
     end
   end
 
-  def filter_destination
-    
+  def filter_destinations
+    binding.pry
+    render :nothing
   end
 
   private
