@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :tags
+  resources :activities
+  resources :attractions
   devise_for :users
   resources :roleusers
   resources :roles
