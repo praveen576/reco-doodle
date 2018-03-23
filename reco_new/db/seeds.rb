@@ -11,6 +11,7 @@
 user = User.create(email: "admin@reco.com", password: "123456")
 
 role = Role.create(name: "admin")
+role2 = Role.create(name: "traveller")
 
 user.roles << role
 
