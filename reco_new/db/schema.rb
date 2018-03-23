@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20180323115244) do
+ActiveRecord::Schema.define(version: 20180323122438) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -55,6 +54,12 @@ ActiveRecord::Schema.define(version: 20180323115244) do
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "taggeable_type"
+    t.bigint "taggeable_id"
+    t.string "tag_entity_type"
+    t.bigint "tag_entity_id"
+    t.index ["tag_entity_type", "tag_entity_id"], name: "index_tags_on_tag_entity_type_and_tag_entity_id"
+    t.index ["taggeable_type", "taggeable_id"], name: "index_tags_on_taggeable_type_and_taggeable_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -13,3 +13,10 @@ user = User.create(email: "admin@reco.com", password: "123456")
 role = Role.create(name: "admin")
 
 user.roles << role
+
+destination = Destination.find_or_create_by(name: "Kerala")
+
+activity = Activity.find_or_create_by(name: "Adventure", description: "Looking for some adventtures!!")
+attraction = Attraction.find_or_create_by(name: "Wildlife", description: "Wildlife is fun!!")
+
+tag = Tag.create(taggeable_type: "Destination", taggeable_id: Destination.first.id, tag_entity_type: "Activity", tag_entity_id: Activity.first.id)
