@@ -4,6 +4,7 @@
   <strong>Name:</strong>
   <%= @destination.name %>
 </p>
+<%= image_tag @destination.avatar.url(:medium) %>
 
 <%= link_to 'Edit', edit_destination_path(@destination) %> |
 <%= link_to 'Back', destinations_path %>
