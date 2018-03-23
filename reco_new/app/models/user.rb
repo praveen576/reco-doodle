@@ -9,4 +9,12 @@ class User < ApplicationRecord
 
   validates_presence_of [:email, :password]
 
+  def role?(*roles)
+    ((self.roles.map(&:name)) & roles.map(&:to_s)).present?
+  end
+
+  def is_admin?
+  	self.role? ("admin")
+  end
+
 end
