@@ -7,4 +7,8 @@ class Destination < ApplicationRecord
 
   has_many :tags, as: :taggeable
 
+  def self.filter_destinations(params_filter)
+    Destination.first(5)
+  end
+
 end

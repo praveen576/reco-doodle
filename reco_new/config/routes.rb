@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :trip_types
   resources :tags
   resources :activities
   resources :attractions

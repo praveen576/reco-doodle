@@ -63,6 +63,8 @@ class DestinationsController < ApplicationController
 
   def filter_destinations
     binding.pry
+    @destinations = Destination.filter_destinations(params.except([:controller, :action]))
+
     render :nothing
   end
 
