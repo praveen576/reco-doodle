@@ -62,8 +62,7 @@ class DestinationsController < ApplicationController
   end
 
   def filter_destinations
-    binding.pry
-    render :nothing
+    render json: {data: Destination.all.pluck(:name).join(',')}
   end
 
   private

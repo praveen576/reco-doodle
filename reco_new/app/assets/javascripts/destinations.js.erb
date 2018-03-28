@@ -1,0 +1,22 @@
+//= require jquery.min
+//= require jquery_ujs
+//= require bootstrap.min
+//= require form
+
+$(document).ready(function() {
+  $('.submit-button').click(function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: '<%= Rails.application.routes.url_helpers.filter_destinations_destinations_path %>',
+      method: 'GET',
+      contentType: 'application/json; charset=utf-8',
+      data: {trip_type: $('input[name=trip_type]:checked').val(),
+             attractions: $("input:checkbox[name=attractions]:checked").map(function(){return $(this).val()}).get(),
+             activities: $("input:checkbox[name=activities]:checked").map(function(){return $(this).val()}).get()},
+      dataType: 'json',
+      success: function (msgData) {
+        $('#destination-content').text(msgData.data);
+      }
+    });  
+  });
+});
