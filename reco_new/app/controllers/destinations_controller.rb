@@ -62,7 +62,8 @@ class DestinationsController < ApplicationController
   end
 
   def filter_destinations
-    render json: {data: Destination.all.pluck(:name).join(',')}
+    # render json: {data: Destination.all.pluck(:name).join(',')}
+    @destinations = Destination.filter_destinations(params.except([:controller, :action]))
   end
 
   private
