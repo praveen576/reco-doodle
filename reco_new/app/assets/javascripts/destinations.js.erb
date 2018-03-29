@@ -12,7 +12,7 @@ $(document).ready(function() {
       contentType: 'application/json; charset=utf-8',
       data: {trip_type: $('input[name=trip_type]:checked').val(),
              attractions: $("input:checkbox[name=attractions]:checked").map(function(){return $(this).val()}).get(),
-             activities: $("input:checkbox[name=activities]:checked").map(function(){return $(this).val()}).get()},
+             activities: $("input:radio[name^=activities]:checked").map(function(){return $(this).val()}).get()},
       dataType: 'json',
       success: function (msgData) {
         $('#destination-content').text(msgData.data);

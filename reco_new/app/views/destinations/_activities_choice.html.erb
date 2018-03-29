@@ -1,0 +1,23 @@
+<table class="table table-header-rotated">
+    <thead>
+      <tr>
+        <!-- First column header is not rotated -->
+        <th></th>
+        <% get_activities.each_with_index do |activity, index| %>
+        <!-- Following headers are rotated -->
+          <th class="rotate"><div><span><%= activity %></span></div></th>
+        <% end %>
+      </tr> 
+    </thead>
+    <tbody>
+      <% Activity::INTEREST_RATE.each do |key, value| %>
+        <tr>
+          <th class="row-header"><%= value %></th>
+          <% get_activities.each_with_index do |activity, index| %>
+            <td><input name="activities-<%= activity %>" type="radio" value="<%= activity %>-<%= value %>"></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+<button class="submit-button">Filter</button>

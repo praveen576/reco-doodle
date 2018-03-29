@@ -10,15 +10,6 @@
             </label>
           </div>
         <% end %>
-
-        <% get_activities.each_with_index do |activity, index| %>
-          <div class="col-md-2 attr-act-card">
-            <label class="btn btn-primary">
-              <img src="http://content.nike.com/content/dam/one-nike/globalAssets/menu_header_images/OneNike_Global_Nav_Icons_Running.png" alt="..." class="img-thumbnail img-check">
-              <input type="checkbox" name="activities" id="item<%= (index+1) %>" value="<%= activity %>" class="hidden" autocomplete="off">
-            </label>
-          </div>
-        <% end %>
   		</div>
 		</form>
 	</div>	
