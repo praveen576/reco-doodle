@@ -63,7 +63,11 @@ class DestinationsController < ApplicationController
 
   def filter_destinations
     @destinations = Destination.filter_destinations(params.except([:controller, :action]))
-    render json: {data: @destinations.map(&:name) }
+    
+    respond_to do |format|  
+      # render json: {data: @destinations.map(&:name) }
+      format.js
+    end
   end
 
   private

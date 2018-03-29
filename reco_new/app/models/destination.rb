@@ -2,7 +2,7 @@ class Destination < ApplicationRecord
 
   validates_presence_of :name
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/destinations/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   has_many :tags, as: :taggeable
@@ -11,10 +11,12 @@ class Destination < ApplicationRecord
     trip_type_ids = TripType.where(name: params_filter[:trip_type]).pluck(:id).presence || [0]
     attraction_ids = Attraction.where(name: params_filter[:attractions]).pluck(:id).presence || [0]
 
-    must_have_activities = params_filter[:activities].map{|act| act.split('-')}.select{|act| act.last == "Yes" }.map(&:first)
+    must_have_activities = params_filter[:activities].map{|act| act.split('-')}.select{|act| act.last == "Yes" }.map(&:first) rescue []
+
     must_have_activity_ids = Activity.where(name: must_have_activities).pluck(:id).presence || [0]
 
-    should_have_activities = params_filter[:activities].map{|act| act.split('-')}.select{|act| act.last == "May be" }.map(&:first)
+    should_have_activities = params_filter[:activities].map{|act| act.split('-')}.select{|act| act.last == "May be" }.map(&:first) rescue []
+
     should_have_activity_ids = Activity.where(name: should_have_activities).pluck(:id).presence || [0]
 
     must_match_items_count = (attraction_ids - [0]).count + (must_have_activity_ids - [0]).count
@@ -37,7 +39,10 @@ class Destination < ApplicationRecord
     dest_ids = Tag.select("taggeable_id").from(nested_q_r).group(:taggeable_id).having("sum(must_match_flag) = ?", must_match_items_count).order("sum(norm_trip_type_weight) desc, sum(norm_sec_weight) desc").map(&:taggeable_id)
 
     # temp = Tag.select("taggeable_id, sum(norm_trip_type_weight) as ps, sum(norm_sec_weight) as ss").from(nested_q_r).group(:taggeable_id).having("sum(must_match_flag) = ?", must_match_items_count).order("sum(norm_trip_type_weight) asc, sum(norm_sec_weight) desc").map{|e| [e.taggeable_id, e.ps, e.ss] }
-    Destination.where(id: dest_ids)
+
+    # Rails.logger.info("DESTDESTDEST" + dest_ids.to_s)
+    # Rails.logger.info("TESTETSTTESTTEST" + temp.to_s)
+    Destination.where(id: dest_ids).order("FIELD (id, #{dest_ids.join(',')})")
   end
 
 end

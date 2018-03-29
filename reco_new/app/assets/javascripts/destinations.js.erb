@@ -13,9 +13,9 @@ $(document).ready(function() {
       data: {trip_type: $('input[name=trip_type]:checked').val(),
              attractions: $("input:checkbox[name=attractions]:checked").map(function(){return $(this).val()}).get(),
              activities: $("input:radio[name^=activities]:checked").map(function(){return $(this).val()}).get()},
-      dataType: 'json',
+      dataType: 'script',
       success: function (msgData) {
-        $('#destination-content').text(msgData.data);
+        console.log("sucess..!!");
       }
     });  
   });

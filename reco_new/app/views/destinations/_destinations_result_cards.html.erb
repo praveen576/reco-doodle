@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <form method="get">
+      <div class="form-group">
+        <% list.each_with_index do |item, index| %>
+          <div class="col-md-2 attr-act-card">
+            <label class="btn btn-primary">
+              <img class="img-thumbnail img-check attr-img-card" src="<%= item.avatar.url(:medium) %>">
+            </label>
+            <span><b><%= item.name %></b></span>
+          </div>
+        <% end %>
+      </div>
+    </form>
+  </div>  
+</div>
