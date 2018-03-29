@@ -10,5 +10,10 @@
   <%= @attraction.description %>
 </p>
 
+<%= image_tag @attraction.avatar.url(:medium) %>
+
+<br>
+<br>
+
 <%= link_to 'Edit', edit_attraction_path(@attraction) %> |
 <%= link_to 'Back', attractions_path %>

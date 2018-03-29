@@ -1,7 +1,7 @@
 module DestinationsHelper
 
   def get_attractions
-    Attraction.all.map(&:name)
+    Attraction.all
   end
 
   def get_activities
